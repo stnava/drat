@@ -1,9 +1,140 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!doctype html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
-<title></title>
-</head>
-<body>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Drat by stnava</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Drat</h1>
+        <p>Drat R Archive Template</p>
+
+        <p class="view"><a href="https://github.com/stnava/drat">View the Project on GitHub <small>stnava/drat</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/stnava/drat/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/stnava/drat/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/stnava/drat">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h2>
+<a id="drat--" class="anchor" href="#drat--" aria-hidden="true"><span class="octicon octicon-link"></span></a>drat <a href="https://travis-ci.org/eddelbuettel/drat"><img src="https://travis-ci.org/eddelbuettel/drat.png" alt="Build Status"></a> <a href="http://www.gnu.org/licenses/gpl-2.0.html"><img src="http://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat" alt="License"></a>
+</h2>
+
+<p>Drat R Archive Template</p>
+
+<h3>
+<a id="background" class="anchor" href="#background" aria-hidden="true"><span class="octicon octicon-link"></span></a>Background</h3>
+
+<p>The R package ecosystem is one of the cornerstones of the success seen by R.
+As of this writing, over 6200 packages are on <a href="http://cran.r-project.org">CRAN</a>,
+several hundred more at <a href="http://www.bioconductor.org">BioConductor</a> and at
+<a href="http://www.omegahat.org">OmegaHat</a>.</p>
+
+<p>Support for multiple repositories is built deeply into R; mostly via the
+(default) package <code>utils</code>. The
+<a href="http://www.rdocumentation.org/packages/utils/functions/update.packages"><code>update.packages</code></a>
+function (along with several others from the <code>utils</code> package) can used with
+ease for these three default repositories as well as many others. But it
+seemed that support for <em>simple creation and use</em> of local repositories was
+missing.</p>
+
+<p>Drat tries to help here and supports two principal modes:</p>
+
+<ul>
+<li>
+<em>GitHub</em> by leveraging <code>gh-pages</code>
+</li>
+<li>
+<em>Other repos</em> by using other storage where you can write and provide html access</li>
+</ul>
+
+<p>See the next section about to get started, the package documentation, the
+<a href="http://dirk.eddelbuettel.com/code/drat.html">drat package page</a> or the
+<a href="http://dirk.eddelbuettel.com/blog/code/drat/">blog section on drat</a> for more.</p>
+
+<h3>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting Started</h3>
+
+<p>You can install the package from <a href="http://cran.r-project.org">CRAN</a> via the
+standard <code>install.packages("drat")</code>.  Alternatively, for a first
+installation, you can also do</p>
+
+<div class="highlight highlight-r"><pre>install.packages(<span class="pl-s"><span class="pl-pds">"</span>drat<span class="pl-pds">"</span></span>, <span class="pl-v">repos</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>http://eddelbuettel.github.io/drat<span class="pl-pds">"</span></span>)</pre></div>
+
+<p>to install directly from the drat repository.  After either initial
+installation, you can add line such as</p>
+
+<div class="highlight highlight-r"><pre><span class="pl-e">drat</span><span class="pl-k">:::</span>add(<span class="pl-s"><span class="pl-pds">"</span>eddelbuettel<span class="pl-pds">"</span></span>)</pre></div>
+
+<p>to your session or startup files (see <code>help(Startup)</code>) and use
+<code>update.packages()</code> as usual---also reflection the new drat archive.</p>
+
+<p>Package insertion into a repo then works by passing the package tarball
+filename as an argument to <code>insertPackage()</code> or its shorthand variant:</p>
+
+<div class="highlight highlight-r"><pre><span class="pl-e">drat</span><span class="pl-k">:::</span>insert(<span class="pl-s"><span class="pl-pds">"</span>drat_0.0.1.tar.gz<span class="pl-pds">"</span></span>)</pre></div>
+
+<p>You can now add, commit and push the new version. A somewhat experimental
+option also exists for the <code>insertPackage()</code> aka <code>drat:::insert()</code> function.</p>
+
+<p>The package documentation provides more details; the
+<a href="http://dirk.eddelbuettel.com/code/drat.html">drat package page</a> has a longer
+tutorial, and the
+<a href="http://dirk.eddelbuettel.com/blog/code/drat/">blog section on drat</a> has even
+more.</p>
+
+<h3>
+<a id="status" class="anchor" href="#status" aria-hidden="true"><span class="octicon octicon-link"></span></a>Status</h3>
+
+<p>The package is now available from <a href="http://cran.r-project.org">CRAN</a>. A few
+possible improvements, additions and next steps are listed in the
+<a href="https://github.com/eddelbuettel/drat/blob/master/inst/TODO.md">TODO.md</a>
+file.</p>
+
+<p>A few drat repositories are starting to appear (besides this one). Via a
+combination of looking at the direct forks as well as GitHub search, I became
+aware of these:</p>
+
+<ul>
+<li><a href="https://github.com/hrbrmstr/drat">hrbrmstr</a></li>
+<li><a href="https://github.com/yutannihilation/drat">yutannihilation</a></li>
+<li><a href="https://github.com/gschofl/drat/">gschofl</a></li>
+<li><a href="https://github.com/csgillespie/drat">csgillespie</a></li>
+<li><a href="https://github.com/homerhanumat/drat">homerhanumat</a></li>
+<li><a href="https://github.com/cboettig/drat">cboettig</a></li>
+<li><a href="https://github.com/shabbychef/drat">shabbychef</a></li>
+<li><a href="https://github.com/RcppCore/drat">RcppCore</a></li>
+<li><a href="https://github.com/arilamstein/drat">arilamstein</a></li>
+</ul>
+
+<h3>
+<a id="author" class="anchor" href="#author" aria-hidden="true"><span class="octicon octicon-link"></span></a>Author</h3>
+
+<p>Dirk Eddelbuettel </p>
+
+<h3>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h3>
+
+<p>GPL (&gt;= 2)</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/stnava">stnava</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
 </html>
